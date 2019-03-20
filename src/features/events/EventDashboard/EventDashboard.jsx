@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid} from 'semantic-ui-react';
+import {Grid,Button} from 'semantic-ui-react';
 import EventList from '../EventsList/EventsList'
 import EventForm from '../EventForm/EventForm';
 import 'semantic-ui-css'
@@ -58,15 +58,26 @@ const eventsData = [
 ]
 
 class EventDashboard extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      events:eventsData,
+      isOpen: false,
+    };
+  }
   render() {
     return (
       <Grid>
         <Grid.Column width = {10}>
-          <EventList events = {eventsData}/>
+          <EventList events = {this.state.events}/>
         </Grid.Column>
         <Grid.Column width = {6}>
+          <Button positive content="Create Event"/>
+                 Create Event
+          {this.state.isOpen && 
           <EventForm/>
-          <p>Dingle is Ready to Mingle</p>
+          }
+          
         </Grid.Column>
       </Grid>
     );
