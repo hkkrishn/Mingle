@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import EventListItem from './EventsListItem'
 
 class EventsList extends Component {
+  
   render() {
+    const {events} = this.props;
     return (
            <div>
-             <EventListItem/>
-             <EventListItem/>
-             <EventListItem/>
-             <EventListItem/>
+            
+             {events.map((event)=>(
+               <EventListItem key = {event.id} event = {event}/>
+             ))}
            </div>
     );
   }
