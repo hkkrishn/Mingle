@@ -15,10 +15,16 @@ class EventForm extends Component {
   }
   componentDidMount(){
     if(this.props.selectedEvent !== null){
-      console.log('Editing')
-      console.log(this.props.selectedEvent)
       this.setState({event:this.props.selectedEvent})
     }
+  }
+
+  componentWillReceiveProps(nextProps){
+       if(nextProps.selectedEvent !== this.props.selectedEvent){
+         this.setState({
+           event:nextProps.selectedEvent || emptyEvent
+         })
+       }
   }
 
   onFormSubmit = (e) =>{
