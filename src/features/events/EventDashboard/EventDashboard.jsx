@@ -90,21 +90,35 @@ class EventDashboard extends Component {
     console.log(this.state)
   }
 
-  handleEditEvent = (eventToUpdate) => () =>{
-    this.setState({selectedEvent:eventToUpdate,isOpen:true})
+  handleOpenEvent = (eventToOpen) => () =>{
+    this.setState({selectedEvent:eventToOpen,isOpen:true})
 
+  }
+
+  handleUpdateEvent = (updatedEvent) => {
+    this.setState({
+      events:this.state.events.map(event => {
+        if(event.id === updatedEvent.id){
+          return Object.assign({},updatedEvent)
+        } else{
+          return event
+        }
+      }),
+      isOpen:false,
+      selectedEvent:null
+    })
   }
   render() {
     const {selectedEvent} = this.state;
     return (
       <Grid>
         <Grid.Column width = {10}>
-          <EventList onEventEdit = {this.handleEditEvent} events = {this.state.events}/>
+          <EventList onEventOpen = {this.handleOpenEvent} events = {this.state.events}/>
         </Grid.Column>
         <Grid.Column width = {6}>
           <Button onClick = {this.handleFormOpen} positive content="Create Event"/>      
           {this.state.isOpen && 
-          <EventForm selectedEvent = {selectedEvent} handleCancel = {this.handleFormCancel} createEvent = {this.handleCreateEvents} onEventEdit = {this.handleEditEvent}/>
+          <EventForm  updateEvent = {this.handleUpdateEvent}selectedEvent = {selectedEvent} handleCancel = {this.handleFormCancel} createEvent = {this.handleCreateEvents} onEventEdit = {this.handleEditEvent}/>
           }
           
         </Grid.Column>

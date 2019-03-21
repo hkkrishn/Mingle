@@ -30,7 +30,11 @@ class EventForm extends Component {
   onFormSubmit = (e) =>{
     e.preventDefault();
     console.log('Form Submitted')
-    this.props.createEvent(this.state.event)
+    if(this.state.event.id){
+      this.props.updateEvent(this.state.event)
+    }else{
+      this.props.createEvent(this.state.event)
+    }
     //console.log(this.state.event)
       
 
@@ -46,7 +50,7 @@ class EventForm extends Component {
   
   render() {
     const {handleCancel} = this.props;
-    const {createEvents} = this.props;
+    //const {createEvents} = this.props;
     const{event}  = this.state;
     return (
       <Segment>
