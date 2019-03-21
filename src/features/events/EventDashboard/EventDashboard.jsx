@@ -11,7 +11,7 @@ const eventsData = [
   {
     id: '1',
     title: 'Trip to Tower of London',
-    date: '2018-03-27T11:00:00+00:00',
+    date: '2018-03-27',
     category: 'culture',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
@@ -35,7 +35,7 @@ const eventsData = [
   {
     id: '2',
     title: 'Trip to Punch and Judy Pub',
-    date: '2018-03-28T14:00:00+00:00',
+    date: '2018-03-28',
     category: 'drinks',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
@@ -64,12 +64,14 @@ class EventDashboard extends Component {
     this.state = {
       events:eventsData,
       isOpen: false,
+      selectedEvent:null,
     };
   }
 
+
   handleFormOpen = () =>{
     console.log('Form Closed')
-    this.setState({isOpen:true})
+    this.setState({isOpen:true,selectedEvent:null,})
   }
 
   handleFormCancel = () =>{
@@ -87,16 +89,22 @@ class EventDashboard extends Component {
     });
     console.log(this.state)
   }
+
+  handleEditEvent = (eventToUpdate) => () =>{
+    this.setState({selectedEvent:eventToUpdate,isOpen:true})
+
+  }
   render() {
+    const {selectedEvent} = this.state;
     return (
       <Grid>
         <Grid.Column width = {10}>
-          <EventList events = {this.state.events}/>
+          <EventList onEventEdit = {this.handleEditEvent} events = {this.state.events}/>
         </Grid.Column>
         <Grid.Column width = {6}>
           <Button onClick = {this.handleFormOpen} positive content="Create Event"/>      
           {this.state.isOpen && 
-          <EventForm handleCancel = {this.handleFormCancel} createEvent = {this.handleCreateEvents}/>
+          <EventForm selectedEvent = {selectedEvent} handleCancel = {this.handleFormCancel} createEvent = {this.handleCreateEvents} onEventEdit = {this.handleEditEvent}/>
           }
           
         </Grid.Column>
