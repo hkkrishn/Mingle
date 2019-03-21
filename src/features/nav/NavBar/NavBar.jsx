@@ -9,7 +9,7 @@ class NavBar extends Component {
               <Container>
                 <Menu.Item header>
                   <img src="assets/logo.png" alt="logo" />
-                 <i className="fas fa-dharmachakra fa-spin"></i>
+                 <i className="fas fa-futbol fa-spin"></i>
                   Event-Mingle
                 </Menu.Item>
                 <Menu.Item name="Events" />

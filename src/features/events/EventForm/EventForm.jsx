@@ -18,8 +18,10 @@ class EventForm extends Component {
   }
 
   onFormSubmit = (e) =>{
+    e.preventDefault();
     console.log('Form Submitted')
-    console.log(this.state.event)
+    this.props.createEvent(this.state.event)
+    //console.log(this.state.event)
       
 
   }
@@ -27,13 +29,14 @@ class EventForm extends Component {
   onInputChange = (e) =>{
     const newEvent = this.state.event;
     newEvent[e.target.name] = e.target.value//destructure asssingment
-
     this.setState({event: newEvent})
       console.log(this.state.event)
+      console.log('yi')
   }
   
   render() {
     const {handleCancel} = this.props;
+    const {createEvents} = this.props;
     const{event}  = this.state;
     return (
       <Segment>
@@ -58,7 +61,7 @@ class EventForm extends Component {
                  <label>Hosted By</label>
                  <input name = 'hostedBy' onChange = {this.onInputChange} placeholder="Enter the name of person hosting" />
                </Form.Field>
-               <Button positive type="submit">
+               <Button positive type="submit" onClick ={this.onFormSubmit}>
                  Submit
                </Button>
                <Button onClick = {handleCancel} type="button">Cancel</Button>
