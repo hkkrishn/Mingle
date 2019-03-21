@@ -90,6 +90,15 @@ class EventDashboard extends Component {
     console.log(this.state)
   }
 
+  handleDeleteEvent = (eventId) => () => {
+    const updatedEvents = this.state.events.filter(e => e.id !== eventId);
+    this.setState({
+      events: updatedEvents
+    })
+  }
+  //this is going to return a new array with all the events that dont match eventId and store that in updatedEvents.
+  
+
   handleOpenEvent = (eventToOpen) => () =>{
     this.setState({selectedEvent:eventToOpen,isOpen:true})
 
@@ -113,7 +122,7 @@ class EventDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width = {10}>
-          <EventList onEventOpen = {this.handleOpenEvent} events = {this.state.events}/>
+          <EventList  onEventDelete = {this.handleDeleteEvent} onEventOpen = {this.handleOpenEvent} events = {this.state.events}/>
         </Grid.Column>
         <Grid.Column width = {6}>
           <Button onClick = {this.handleFormOpen} positive content="Create Event"/>      
