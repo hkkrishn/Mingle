@@ -3,7 +3,7 @@ import React from 'react'
 const PeopleDashBoard = () => {
   return (
     <div>
-      <h1>Event Details</h1>
+      <h1>People DashBoard</h1>
     </div>
   )
 }

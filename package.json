@@ -8,6 +8,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-hot-loader": "^4.8.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "semantic-ui": "^2.4.2",
     "semantic-ui-css": "^2.2.14",
