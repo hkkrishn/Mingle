@@ -10,6 +10,7 @@ import PeopleDashboard from '../../features/user/PeopleDashBoard/PeopleDashBoard
 import UserDetailed from '../../features/user/UserDetailed/UserDetailedPage';
 import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import HomePage from '../../features/home/HomePage'
+import TestComponent from '../../features/testarea/TestComponent';
 
 
 //Initialize routes to the multiple pages below!
@@ -27,6 +28,7 @@ class App extends Component {
           <Container className = "main">
             <Switch>
               <Route path = '/events' component = {EventDashboard} />
+              <Route path = '/test' component = {TestComponent} />
               <Route path = '/events:id' component = {EventDetailedPage} /> 
               <Route path = '/people' component = {PeopleDashboard} /> 
               <Route path = '/profile/:id' component = {UserDetailed} /> 
