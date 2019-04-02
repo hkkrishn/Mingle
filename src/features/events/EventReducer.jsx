@@ -53,8 +53,8 @@ const initialState = [
 ]
 
 
-export const createEvent = (state,payload) => {
-  return [...state,Object.assign({},payload.event)]
+export const createEvent = (state, payload) => {
+  return [...state, Object.assign({}, payload.event)]
 }
 
 export const updateEvent = (state, payload) => {
@@ -68,8 +68,8 @@ export const deleteEvent = (state,payload) => {
   ]
 }
 
-export default createReducer(initialState,{
-  [CREATE_EVENT]:createEvent,
-  [UPDATE_EVENT]:updateEvent,
-  [DELETE_EVENT]:deleteEvent
+export default createReducer(initialState, {
+  [CREATE_EVENT]: createEvent,
+  [UPDATE_EVENT]: updateEvent,
+  [DELETE_EVENT]: deleteEvent
 })
