@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import {incrementCounter, decrementCounter  } from './TestActions';
 import Script from 'react-load-script';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import GoogleMapReact from 'google-map-react';
-import {Icon,Button  } from 'semantic-ui-react';
+import {Button  } from 'semantic-ui-react';
+import { openModal } from '../modals/modalActions'
 
 
 
@@ -16,10 +16,11 @@ const mapState = (state) =>({
 
 const actions = {
   incrementCounter,
-  decrementCounter
+  decrementCounter,
+  openModal
 
 }
-const Marker = () => <Icon name = 'marker' size = 'big' color = 'red' />
+
 
 //test refers to the testReducers
 
@@ -53,7 +54,7 @@ handleScriptLoad= () =>{
       value: this.state.address,
       onChange: this.onChange,
     }
-    const {incrementCounter,decrementCounter,data} = this.props
+    const {incrementCounter,decrementCounter,data,openModal} = this.props
     return (
       <div>
         <Script
@@ -64,25 +65,17 @@ handleScriptLoad= () =>{
         <h3>The answer is: {data} </h3>
         <Button onClick = {incrementCounter} color = 'green' content = 'Increase' />
         <Button onClick = {decrementCounter} color = 'red' content = 'Decrease' />
+        <Button onClick={() =>{
+          console.log('Button Clicked')
+          openModal('TestModal', {data: 42})
+        }} color = 'teal' content = 'Open Modal' />
         <br/>
         <br/>
         <form onSubmit={this.handleFormSubmit}>
         {this.state.scriptLoaded && <PlacesAutocomplete inputProps={inputProps} />}
         <button type="submit">Submit</button>
       </form>
-      <div style={{ height: '300px', width: '100%' }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key:'AIzaSyDzbphusfigdQaMcGNj8-lzpud6WvVHzyM'}}
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          >
-            <Marker
-              lat={59.955413}
-              lng={30.337844}
-              text="My Marker"
-            />
-          </GoogleMapReact>
-      </div>
+      
       </div>
     );
   }

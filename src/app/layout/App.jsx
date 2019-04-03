@@ -11,6 +11,7 @@ import UserDetailed from '../../features/user/UserDetailed/UserDetailedPage';
 import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import HomePage from '../../features/home/HomePage'
 import TestComponent from '../../features/testarea/TestComponent';
+import ModalManager from '../../features/modals/ModalManager'
 
 
 //Initialize routes to the multiple pages below!
@@ -18,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <ModalManager/>
         <Switch>
           <Route  exact path = '/' component = {HomePage} />
         </Switch>

@@ -104,4 +104,12 @@ body {
   padding-bottom: 0 !important;
   padding-left: 2em !important;
 }
-
+/*Semantic UI v2.3.1 modal quick-fix*/
+ 
+.dimmer {
+  display: flex !important;
+}
+ 
+.modal {
+  margin-top: 0;
+}
